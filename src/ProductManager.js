@@ -1,6 +1,5 @@
-import fs from "fs/promises";
+import fs from "fs";
 import Product from "./Product.js";
-// const fs = require("fs");
 
 class ProductManager {
   // Atributes
@@ -8,11 +7,12 @@ class ProductManager {
   path;
 
   constructor(path) {
-    this.path = path;
+    
+    // if (!fs.existsSync(this.path)) {
+    //   fs.writeFileSync(this.path, JSON.stringify([]));
+    // }
 
-    if (!fs.existsSync(this.path)) {
-      fs.writeFileSync(this.path, JSON.stringify([]));
-    }
+    this.path = path;
   }
 
   // Methods
@@ -61,7 +61,6 @@ class ProductManager {
       await fs.promises.readFile(this.path, "utf-8")
     );
     const productById = showProducts.find((e) => e.id === id);
-
     if (!productById) {
       console.log("this product doesn't exist");
     } else {
@@ -83,36 +82,89 @@ class ProductManager {
   }
 }
 
-// const productsManager = new ProductManager("./Products.json");
+const productsManager = new ProductManager("./Products.json");
 
-// (async () => {
-//   await productsManager.addProduct({
-//     title: "zapato",
-//     description: "minimalista",
-//     price: 150,
-//     thumbnail: "Sin Ruta",
-//     code: 1,
-//     stock: 50,
-//   });
-//   await productsManager.addProduct({
-//     title: "Gorra",
-//     description: "Lengueta",
-//     price: 50,
-//     thumbnail: "Sin Ruta",
-//     code: 2,
-//     stock: 50,
-//   });
-//   await productsManager.addProduct({
-//     title: "Remera",
-//     description: "estampada",
-//     price: 70,
-//     thumbnail: "Sin Ruta",
-//     code: 3,
-//     stock: 50,
-//   });
-
-//   console.log(await productsManager.getProducts());
-//   console.log(await productsManager.getProductById(2));
-// })();
+(async () => {
+  await productsManager.addProduct({
+    title: "zapato",
+    description: "minimalista",
+    price: 150,
+    thumbnail: "Sin Ruta",
+    code: 1,
+    stock: 50,
+  });
+  await productsManager.addProduct({
+    title: "Gorra",
+    description: "Lengueta",
+    price: 50,
+    thumbnail: "Sin Ruta",
+    code: 2,
+    stock: 50,
+  });
+  await productsManager.addProduct({
+    title: "Remera",
+    description: "estampada",
+    price: 70,
+    thumbnail: "Sin Ruta",
+    code: 3,
+    stock: 50,
+  });
+  await productsManager.addProduct({
+    title: "Pantalon",
+    description: "estampada",
+    price: 70,
+    thumbnail: "Sin Ruta",
+    code: 4,
+    stock: 50,
+  });
+  await productsManager.addProduct({
+    title: "Pulsera",
+    description: "estampada",
+    price: 70,
+    thumbnail: "Sin Ruta",
+    code: 5,
+    stock: 50,
+  });
+  await productsManager.addProduct({
+    title: "Musculosa",
+    description: "estampada",
+    price: 70,
+    thumbnail: "Sin Ruta",
+    code: 6,
+    stock: 50,
+  });
+  await productsManager.addProduct({
+    title: "Short",
+    description: "Jean",
+    price: 70,
+    thumbnail: "Sin Ruta",
+    code: 7,
+    stock: 50,
+  });
+  await productsManager.addProduct({
+    title: "Calcetines",
+    description: "estampada",
+    price: 70,
+    thumbnail: "Sin Ruta",
+    code: 8,
+    stock: 50,
+  });
+  await productsManager.addProduct({
+    title: "Reloj",
+    description: "Oro",
+    price: 70,
+    thumbnail: "Sin Ruta",
+    code: 9,
+    stock: 50,
+  });
+  await productsManager.addProduct({
+    title: "Corbata",
+    description: "estampada",
+    price: 70,
+    thumbnail: "Sin Ruta",
+    code: 10,
+    stock: 50,
+  });
+})();
 
 export default ProductManager
